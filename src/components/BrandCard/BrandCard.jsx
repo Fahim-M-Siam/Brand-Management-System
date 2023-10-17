@@ -10,9 +10,6 @@ const BrandCard = ({ brand }) => {
       </figure>
       <div className="card-body bg-gradient-to-r from-[#cc2b5e] to-[#753a88]">
         <h2 className="card-title">{Name}</h2>
-        <div className="card-actions justify-end">
-          <button className="btn btn-outline">Buy Now</button>
-        </div>
       </div>
     </div>
   );
