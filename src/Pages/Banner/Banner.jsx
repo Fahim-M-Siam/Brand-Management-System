@@ -19,7 +19,7 @@ const Banner = () => {
               and a passion for performance.
             </p>
             <Link to="/register">
-              <button className="btn btn-outline text-white">
+              <button className="btn btn-outline bg-gradient-to-r from-[#cc2b5e] to-[#753a88]">
                 Register Now
               </button>
             </Link>

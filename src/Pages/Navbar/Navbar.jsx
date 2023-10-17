@@ -68,7 +68,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -140,7 +140,9 @@ const Navbar = () => {
           </div>
           <div>
             <Link to="/login">
-              <button className="btn btn-outline px-10">Login</button>
+              <button className="btn btn-outline bg-gradient-to-r from-[#cc2b5e] to-[#753a88] px-10">
+                Login
+              </button>
             </Link>
           </div>
         </div>
