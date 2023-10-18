@@ -6,10 +6,14 @@ import ProductCard from "../ProductCard/ProductCard";
 const Products = () => {
   const { Name } = useParams();
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     fetch(`http://localhost:5000/products/${Name}`)
       .then((res) => res.json())
-      .then((res) => setProducts(res));
+      .then((res) => setProducts(res))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [Name]);
   // var settings = {
   //   dots: true,
@@ -64,16 +68,29 @@ const Products = () => {
         </Slider>
       </div> */}
       {/* slider */}
-      <div>
-        <div className="text-3xl font-medium text-center my-14">
-          <h2>Products of {Name}</h2>
+      {isLoading ? (
+        <div className="my-64 text-center text-5xl">
+          <span className="loading loading-ring loading-xs"></span>
+          <span className="loading loading-ring loading-sm"></span>
+          <span className="loading loading-ring loading-md"></span>
+          <span className="loading loading-ring loading-lg"></span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-          {products?.map((product) => (
-            <ProductCard key={product._id} product={product}></ProductCard>
-          ))}
+      ) : products.length > 0 ? (
+        <div>
+          <div className="text-3xl font-medium text-center my-14">
+            <h2>Products of {Name}</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+            {products?.map((product) => (
+              <ProductCard key={product._id} product={product}></ProductCard>
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="my-20 text-center">
+          <h2 className="text-3xl font-bold">Products are comming soon..</h2>
+        </div>
+      )}
     </div>
   );
 };

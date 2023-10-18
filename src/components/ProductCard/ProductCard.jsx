@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 // @ts-nocheck
 
+import { Link } from "react-router-dom";
+
 // import Slider from "react-slick";
 
 const ProductCard = ({ product }) => {
@@ -35,9 +37,11 @@ const ProductCard = ({ product }) => {
             <button className="btn btn-xs btn-outline font-medium">
               Update
             </button>
-            <button className="btn btn-xs btn-outline font-medium">
-              Details
-            </button>
+            <Link to={`/productsDetails/${productName}`}>
+              <button className="btn btn-xs btn-outline font-medium">
+                Details
+              </button>
+            </Link>
           </div>
         </div>
       </div>
