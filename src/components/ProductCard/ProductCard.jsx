@@ -2,11 +2,13 @@
 // @ts-nocheck
 
 import { Link } from "react-router-dom";
+import { MdEdit } from "react-icons/md";
+import { CgDetailsLess } from "react-icons/cg";
 
 // import Slider from "react-slick";
 
 const ProductCard = ({ product }) => {
-  const { productName, brandName, type, price, rating, image } = product;
+  const { _id, productName, brandName, type, price, rating, image } = product;
 
   return (
     <div>
@@ -34,11 +36,15 @@ const ProductCard = ({ product }) => {
             <input type="radio" name="rating-1" className="mask mask-star" />
           </div>
           <div className="card-actions justify-end">
-            <button className="btn btn-xs btn-outline font-medium">
-              Update
-            </button>
+            <Link to={`/updateProduct/${_id}`}>
+              <button className="btn btn-xs btn-outline font-medium">
+                <MdEdit />
+                Update
+              </button>
+            </Link>
             <Link to={`/productsDetails/${productName}`}>
               <button className="btn btn-xs btn-outline font-medium">
+                <CgDetailsLess />
                 Details
               </button>
             </Link>
