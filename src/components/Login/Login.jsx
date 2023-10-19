@@ -1,40 +1,43 @@
 // @ts-nocheck
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Navigate } from "react-router-dom";
 import SocialLogins from "./SocialLogins";
+import toast from "react-hot-toast";
+import useAuth from "../../Hooks/useAuth";
 // import toast from "react-hot-toast";
 
 const Login = () => {
+  const { signIn } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-  //   const handleLogin = (event) => {
-  //     event.preventDefault();
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    // inputvalues
+    const email = form.email.value;
+    const password = form.password.value;
 
-  //     // get field values
-  //     const email = event.target.email.value;
-  //     const password = event.target.password.value;
+    // signIn
+    signIn(email, password)
+      .then(() => {
+        toast.success("Successfully Logged In");
 
-  //     // signIn
-  //     signIn(email, password)
-  //       .then(() => {
-  //         toast.success("Successfully Logged In");
+        // navigate after login
+        Navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
 
-  //         // navigate after login
-  //         navigate(location?.state ? location.state : "/");
-  //       })
-  //       .catch((error) => {
-  //         const errorCode = error.code;
-  //         const errorMessage = error.message;
+        // validations
+        if (errorCode === "auth/invalid-login-credentials") {
+          toast.error("Invalid Login Credential");
+        } else {
+          console.error(errorMessage);
+        }
+      });
+  };
 
-  //         // validations
-  //         if (errorCode === "auth/invalid-login-credentials") {
-  //           toast.error("Invalid Login Credential");
-  //         } else {
-  //           console.error(errorMessage);
-  //         }
-  //       });
-  //   };
-  // onSubmit={handleLogin}
   return (
     <div className="hero min-h-screen bg-base-10]">
       <div className="hero-content flex-col">
@@ -42,7 +45,7 @@ const Login = () => {
           <h1 className="text-5xl font-bold">Login now!</h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 bg-opacity-10">
-          <form className="card-body">
+          <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>

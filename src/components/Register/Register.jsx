@@ -3,10 +3,54 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import SocialLogins from "../Login/SocialLogins";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
+import { updateProfile } from "firebase/auth";
 
 // @ts-nocheck
 const Register = () => {
+  const { createUser, logOut } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    // inputvalues
+    const name = form.name.value;
+    const email = form.email.value;
+    const img = form.img.value;
+    const password = form.password.value;
+
+    // validations
+    if (password.length < 6) {
+      toast.error("Password is less than 6 characters");
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      toast.error("Password don't have a capital letter");
+      return;
+    } else if (!/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/.test(password)) {
+      toast.error("Password don't have a special character");
+      return;
+    }
+
+    // creatingUser
+    createUser(email, password)
+      .then((currentUser) => {
+        toast.success("Registration has been succesful");
+        logOut();
+        // update profile
+        updateProfile(currentUser.user, {
+          displayName: name,
+          photoURL: img,
+        }).then(() => {
+          toast.success("Profile Updated");
+        });
+        console.log(currentUser.user);
+      })
+      .catch((error) => {
+        toast.error("Registration failed");
+        console.log(error);
+      });
+  };
   return (
     <div className="hero min-h-screen bg-base-10">
       <div className="hero-content flex-col">
@@ -14,7 +58,7 @@ const Register = () => {
           <h1 className="text-5xl font-bold">Register Now!</h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 bg-opacity-10">
-          <form className="card-body">
+          <form onSubmit={handleSubmit} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>

@@ -1,30 +1,34 @@
 // @ts-nocheck
 
+import { useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 
 const ProductDetails = () => {
   const products = useLoaderData();
+  // const [cartProduct, setCartProduct] = useState();
+
   const { productName } = useParams();
   const product = products.find(
     (product) => product.productName === productName
   );
+  // dynamic hobe
+  const email = "fahim.mohammad.siam@gmail.com";
+  const cartProduct = { ...product, email: email };
+  // console.log(cartProduct);
+
   const { _id, brandName, description, rating, type, price, image } = product;
-  // const addTocart = (_id) => {
-  // const cartProduct = { productName, brandName, type, price, rating, image };
-  //   console.log(cartProduct);
-  //   // send cartProduct to the server
-  //   fetch(`http://localhost:5000/products/${brandName}/cartProduct`, {
-  //     method: "POST",
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //     body: JSON.stringify(cartProduct),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     });
-  // };
+  const addTocart = (id) => {
+    console.log(id);
+    console.log(cartProduct);
+    // send cartProduct to the server
+    fetch("http://localhost:5000/cartProduct", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(cartProduct),
+    });
+  };
   return (
     <div className="mt-20 max-w-6xl mx-auto">
       <div className="mt-14 text-start mb-10">
@@ -52,7 +56,7 @@ const ProductDetails = () => {
             <p className="py-6">{description}</p>
 
             <button
-              // onClick={() => addTocart(_id)}
+              onClick={() => addTocart(_id)}
               className="btn btn-outline bg-gradient-to-r from-[#cc2b5e] to-[#753a88]"
             >
               ${price} - Add To Cart

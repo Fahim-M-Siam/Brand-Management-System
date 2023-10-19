@@ -1,6 +1,18 @@
 // @ts-nocheck
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 const Navbar = () => {
+  const { currentUser, logOut } = useAuth();
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("Successfully Logged Out");
+      })
+      .catch(() => {
+        toast.error("Logout Action Failed");
+      });
+  };
   const navlinks = (
     <>
       <li className="font-medium">
@@ -13,31 +25,11 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      <li className="font-medium">
-        <NavLink
-          to="/addProduct"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-[#FF444A] font-medium" : ""
-          }
-        >
-          Add Product
-        </NavLink>
-      </li>
-      <li className="font-medium">
-        <NavLink
-          to="/myCart"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-[#FF444A] font-medium" : ""
-          }
-        >
-          My Cart
-        </NavLink>
-      </li>
-      {/* {currentUser && (
+      {currentUser && (
         <>
           <li className="font-medium">
             <NavLink
-              to="/special"
+              to="/addProduct"
               className={({ isActive, isPending }) =>
                 isPending
                   ? "pending"
@@ -46,12 +38,12 @@ const Navbar = () => {
                   : ""
               }
             >
-              SpecialService
+              Add Product
             </NavLink>
           </li>
           <li className="font-medium">
             <NavLink
-              to="/offers"
+              to="/myCart/{currentUser.email}"
               className={({ isActive, isPending }) =>
                 isPending
                   ? "pending"
@@ -60,11 +52,11 @@ const Navbar = () => {
                   : ""
               }
             >
-              Offers
+              My Cart
             </NavLink>
           </li>
         </>
-      )} */}
+      )}
     </>
   );
   return (
@@ -104,7 +96,7 @@ const Navbar = () => {
         <ul className="gap-5 menu-horizontal px-1">{navlinks}</ul>
       </div>
       <div className="navbar-end">
-        {/* {currentUser ? (
+        {currentUser ? (
           <div>
             <span className="mr-0 lg:mr-1 text-xs font-medium">
               {currentUser.displayName}
@@ -126,27 +118,27 @@ const Navbar = () => {
               </button>
             </Link>
           </div>
-        ) : ( */}
-        <div className="flex lg:flex-none">
-          <div>
-            <label
-              tabIndex={0}
-              className="btn btn-ghost btn-circle avatar mr-0 lg:mr-2 top-[0.1rem]"
-            >
-              <div className="w-10 rounded-full">
-                <img src="https://i.ibb.co/26q0ZKp/user.png" alt="" />
-              </div>
-            </label>
+        ) : (
+          <div className="flex lg:flex-none">
+            <div>
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-circle avatar mr-0 lg:mr-2 top-[0.1rem]"
+              >
+                <div className="w-10 rounded-full">
+                  <img src="https://i.ibb.co/26q0ZKp/user.png" alt="" />
+                </div>
+              </label>
+            </div>
+            <div>
+              <Link to="/login">
+                <button className="btn btn-outline bg-gradient-to-r from-[#cc2b5e] to-[#753a88] px-10">
+                  Login
+                </button>
+              </Link>
+            </div>
           </div>
-          <div>
-            <Link to="/login">
-              <button className="btn btn-outline bg-gradient-to-r from-[#cc2b5e] to-[#753a88] px-10">
-                Login
-              </button>
-            </Link>
-          </div>
-        </div>
-        {/* )} */}
+        )}
       </div>
     </div>
   );
