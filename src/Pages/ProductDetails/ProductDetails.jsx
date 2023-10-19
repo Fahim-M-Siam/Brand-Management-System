@@ -41,14 +41,14 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="mb-32">
-        <div className="w-full h-[700px] relative">
+        <div className="w-full p-2 :h-[700px] relative">
           <img className="w-full h-[700px]" src={image} alt="" />
         </div>
       </div>
       <div className="hero mb-20 -mt-10">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="hero-content p-4 flex-col lg:flex-row-reverse">
           <img src={image} className="max-w-sm rounded-lg shadow-2xl" />
-          <div>
+          <div className="w-full">
             <p className="py-6">{description}</p>
 
             <button
