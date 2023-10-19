@@ -1,25 +1,24 @@
+/* eslint-disable no-unused-vars */
 // @ts-nocheck
 
-import { useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const products = useLoaderData();
-  // const [cartProduct, setCartProduct] = useState();
+  const { currentUser } = useAuth();
 
   const { productName } = useParams();
   const product = products.find(
     (product) => product.productName === productName
   );
-  // dynamic hobe
-  const email = "fahim.mohammad.siam@gmail.com";
-  const cartProduct = { ...product, email: email };
-  // console.log(cartProduct);
 
-  const { _id, brandName, description, rating, type, price, image } = product;
+  const email = currentUser.email;
+  const cartProduct = { ...product, email: email };
+
+  const { _id, brandName, description, type, price, image } = product;
   const addTocart = (id) => {
-    console.log(id);
-    console.log(cartProduct);
     // send cartProduct to the server
     fetch("http://localhost:5000/cartProduct", {
       method: "POST",
@@ -27,7 +26,19 @@ const ProductDetails = () => {
         "content-type": "application/json",
       },
       body: JSON.stringify(cartProduct),
-    });
+    })
+      .then((response) => {
+        if (response.ok) {
+          toast.success("Product added to the cart successfully");
+        } else {
+          // Request failed, handle errors here
+          console.error("Failed to add product to the cart");
+          toast.error("Failed to add product to the cart");
+        }
+      })
+      .catch((error) => {
+        console.error("Network error:", error);
+      });
   };
   return (
     <div className="mt-20 max-w-6xl mx-auto">

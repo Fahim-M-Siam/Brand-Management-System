@@ -43,7 +43,7 @@ const Navbar = () => {
           </li>
           <li className="font-medium">
             <NavLink
-              to="/myCart/{currentUser.email}"
+              to={`/myCart/${currentUser.email}`}
               className={({ isActive, isPending }) =>
                 isPending
                   ? "pending"
