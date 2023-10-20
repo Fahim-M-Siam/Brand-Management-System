@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 
 const Root = () => {
   return (
-    <div className="font-poppins bg-gradient-to-r from-[#cfd9df] to-[#e2ebf0]">
+    <div className="font-poppins">
       <div className="max-w-6xl mx-auto">
         <Navbar></Navbar>
         <Outlet></Outlet>
