@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "slider1": "https://i.ibb.co/djggQ4g/toyotaslider1.jpg",
+    "slider2": "https://i.ibb.co/bRhRZ97/toyotaslider2.jpg",
+    "slider3": "https://i.ibb.co/D5JpqPn/toyotaslider3.jpg",
+    "Name": "TOYOTA"
+  },
+  {
+    "id": 2,
+    "slider1": "https://i.ibb.co/cwJM3M9/fordslider1.jpg",
+    "slider2": "https://i.ibb.co/s9Bzq1T/fordslider2.jpg",
+    "slider3": "https://i.ibb.co/3cXYY4C/fordslider3.jpg",
+    "Name": "FORD"
+  },
+  {
+    "id": 3,
+    "slider1": "https://i.ibb.co/1J7FdLP/bmwslider1.jpg",
+    "slider2": "https://i.ibb.co/vdDVwpB/bmwslider2.jpg",
+    "slider3": "https://i.ibb.co/ypQ7kSh/bmwslider3.jpg",
+    "Name": "BMW"
+  },
+  {
+    "id": 4,
+    "slider1": "https://i.ibb.co/ZV5vt4P/mercedesslider1.jpg",
+    "slider2": "https://i.ibb.co/MP9MH8f/mercedesslider2.jpg",
+    "slider3": "https://i.ibb.co/ScK8wyj/mercedesslider3.jpg",
+    "Name": "MERCEDES"
+  },
+  {
+    "id": 5,
+    "slider1": "https://i.ibb.co/mvz2dCd/teslaslider1.jpg",
+    "slider2": "https://i.ibb.co/Z6gh72c/teslaslider2.jpg",
+    "slider3": "https://i.ibb.co/0Y21Zwy/teslaslider3.jpg",
+    "Name": "TESLA"
+  },
+  {
+    "id": 6,
+    "slider1": "https://i.ibb.co/SmHqwfk/hondaslider1.jpg",
+    "slider2": "https://i.ibb.co/GxY8j60/hondaslider2.jpg",
+    "slider3": "https://i.ibb.co/znH0Dvp/hondaslider3.jpg",
+    "Name": "HONDA"
+  }
+]

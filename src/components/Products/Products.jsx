@@ -3,11 +3,16 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Products = () => {
   const { Name } = useParams();
+  console.log(Name);
   const [products, setProducts] = useState([]);
+  const [slider, setSlider] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     fetch(`http://localhost:5000/products/${Name}`)
       .then((res) => res.json())
@@ -16,59 +21,49 @@ const Products = () => {
         setIsLoading(false);
       });
   }, [Name]);
-  var settings = {
+
+  useEffect(() => {
+    fetch("/adSlider.json")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const find = data?.find((item) => item.Name == Name);
+        setSlider(find);
+      });
+  }, [Name]);
+
+  const settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    slidesToShow: 1,
+    slidesToScroll: 1,
   };
   return (
     <div>
-      {/* slider */}
       <div>
+        <h2 className="mt-20 text-center mb-12 text-3xl">Most Reviewed</h2>
         <Slider className="ml-0 lg:ml-6" {...settings}>
           <div>
             <div className="card">
               <img
-                className="w-full md:w-[250px] lg:w-[250px] h-[200px]"
-                src="https://i.ibb.co/qxcjHQP/slider1.jpg"
+                className="w-full h-[600px] bg-no-repeat bg-cover"
+                src={slider?.slider1}
               />
             </div>
-            <div className="card-body w-full md:w-[250px] lg:w-[250px] h-[50px] bg-gradient-to-r from-[#cc2b5e] to-[#753a88]">
-              <p className="font-medium text-center">BMW -M Series8</p>
+          </div>
+          <div>
+            <div className="card">
+              <img className="w-full h-[600px]" src={slider?.slider2} />
+            </div>
+          </div>
+          <div>
+            <div className="card">
+              <img className="w-full h-[600px]" src={slider?.slider3} />
             </div>
           </div>
         </Slider>
       </div>
-      {/* slider */}
       {isLoading ? (
         <div className="my-64 text-center text-5xl">
           <span className="loading loading-ring loading-xs"></span>

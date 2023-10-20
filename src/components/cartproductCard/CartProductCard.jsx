@@ -10,7 +10,6 @@ const CartProductCard = ({ cartProduct, setCartProducts, cartProducts }) => {
   const { _id, productName, brandName, type, price, rating, image } =
     cartProduct;
   const handleDelete = (id) => {
-    console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
