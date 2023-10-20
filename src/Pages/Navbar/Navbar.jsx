@@ -25,25 +25,21 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
+      <li className="font-medium">
+        <NavLink
+          to="/addProduct"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-[#FF444A] font-medium" : ""
+          }
+        >
+          Add Product
+        </NavLink>
+      </li>
       {currentUser && (
         <>
           <li className="font-medium">
             <NavLink
-              to="/addProduct"
-              className={({ isActive, isPending }) =>
-                isPending
-                  ? "pending"
-                  : isActive
-                  ? "text-[#FF444A] font-medium"
-                  : ""
-              }
-            >
-              Add Product
-            </NavLink>
-          </li>
-          <li className="font-medium">
-            <NavLink
-              to={`/myCart/${currentUser.email}`}
+              to="/myCart"
               className={({ isActive, isPending }) =>
                 isPending
                   ? "pending"
