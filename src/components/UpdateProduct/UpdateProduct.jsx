@@ -38,13 +38,16 @@ const UpdateProduct = () => {
     };
 
     // send data to server
-    fetch(`http://localhost:5000/product/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedProduct),
-    })
+    fetch(
+      `https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/product/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedProduct),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

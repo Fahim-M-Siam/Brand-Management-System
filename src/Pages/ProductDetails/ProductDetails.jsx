@@ -20,13 +20,16 @@ const ProductDetails = () => {
   const { _id, brandName, description, type, price, image } = product;
   const addTocart = (id) => {
     // send cartProduct to the server
-    fetch("http://localhost:5000/cartProduct", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(cartProduct),
-    })
+    fetch(
+      "https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/cartProduct",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(cartProduct),
+      }
+    )
       .then((response) => {
         if (response.ok) {
           toast.success("Product added to the cart successfully");

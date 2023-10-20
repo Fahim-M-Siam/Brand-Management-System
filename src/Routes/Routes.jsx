@@ -39,12 +39,18 @@ const router = createBrowserRouter([
             <MyCart></MyCart>
           </PrivateRoute>
         ),
-        loader: () => fetch(`http://localhost:5000/cartProduct`),
+        loader: () =>
+          fetch(
+            `https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/cartProduct`
+          ),
       },
       {
         path: "/products/:Name",
         element: <Products></Products>,
-        loader: ({ Name }) => fetch(`http://localhost:5000/products/${Name}`),
+        loader: ({ Name }) =>
+          fetch(
+            `https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/products/${Name}`
+          ),
       },
       {
         path: "/productsDetails/:productName",
@@ -53,14 +59,19 @@ const router = createBrowserRouter([
             <ProductDetails></ProductDetails>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/products"),
+        loader: () =>
+          fetch(
+            "https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/products"
+          ),
       },
 
       {
         path: "/updateProduct/:id",
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product/${params.id}`),
+          fetch(
+            `https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/product/${params.id}`
+          ),
       },
       {
         path: "/login",

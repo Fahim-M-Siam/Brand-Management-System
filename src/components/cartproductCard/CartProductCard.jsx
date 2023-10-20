@@ -20,9 +20,12 @@ const CartProductCard = ({ cartProduct, setCartProducts, cartProducts }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/cartProduct/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/cartProduct/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -84,7 +87,7 @@ const CartProductCard = ({ cartProduct, setCartProducts, cartProducts }) => {
 
 export default CartProductCard;
 // {
-//     fetch(`http://localhost:5000/cartProduct/${id}`, {
+//     fetch(`https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/cartProduct/${id}`, {
 //       method: "DELETE",
 //     })
 //       .then((res) => res.json())

@@ -14,7 +14,9 @@ const Products = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${Name}`)
+    fetch(
+      `https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/products/${Name}`
+    )
       .then((res) => res.json())
       .then((res) => setProducts(res))
       .finally(() => {
