@@ -21,7 +21,7 @@ const CartProductCard = ({ cartProduct, setCartProducts, cartProducts }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/cartProduct/${id}`,
+          `https://speedy-wrench-server-af2lh6y0x-fahim-mohammad-siams-projects.vercel.app/cartProduct/${id}`,
           {
             method: "DELETE",
           }
@@ -87,7 +87,7 @@ const CartProductCard = ({ cartProduct, setCartProducts, cartProducts }) => {
 
 export default CartProductCard;
 // {
-//     fetch(`https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/cartProduct/${id}`, {
+//     fetch(`https://speedy-wrench-server-af2lh6y0x-fahim-mohammad-siams-projects.vercel.app/cartProduct/${id}`, {
 //       method: "DELETE",
 //     })
 //       .then((res) => res.json())

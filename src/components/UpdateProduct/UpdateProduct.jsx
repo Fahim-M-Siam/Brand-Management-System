@@ -39,7 +39,7 @@ const UpdateProduct = () => {
 
     // send data to server
     fetch(
-      `https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/product/${_id}`,
+      `https://speedy-wrench-server-af2lh6y0x-fahim-mohammad-siams-projects.vercel.app/product/${_id}`,
       {
         method: "PUT",
         headers: {

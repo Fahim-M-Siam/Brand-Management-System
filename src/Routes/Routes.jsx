@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         ),
         loader: () =>
           fetch(
-            `https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/cartProduct`
+            `https://speedy-wrench-server-af2lh6y0x-fahim-mohammad-siams-projects.vercel.app/cartProduct`
           ),
       },
       {
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         element: <Products></Products>,
         loader: ({ Name }) =>
           fetch(
-            `https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/products/${Name}`
+            `https://speedy-wrench-server-af2lh6y0x-fahim-mohammad-siams-projects.vercel.app/products/${Name}`
           ),
       },
       {
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
         ),
         loader: () =>
           fetch(
-            "https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/products"
+            "https://speedy-wrench-server-af2lh6y0x-fahim-mohammad-siams-projects.vercel.app/products"
           ),
       },
 
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
           fetch(
-            `https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/product/${params.id}`
+            `https://speedy-wrench-server-af2lh6y0x-fahim-mohammad-siams-projects.vercel.app/product/${params.id}`
           ),
       },
       {

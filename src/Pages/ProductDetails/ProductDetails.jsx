@@ -21,7 +21,7 @@ const ProductDetails = () => {
   const addTocart = (id) => {
     // send cartProduct to the server
     fetch(
-      "https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/cartProduct",
+      "https://speedy-wrench-server-af2lh6y0x-fahim-mohammad-siams-projects.vercel.app/cartProduct",
       {
         method: "POST",
         headers: {

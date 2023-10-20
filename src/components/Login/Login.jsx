@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, NavLink, Navigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import SocialLogins from "./SocialLogins";
 import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
@@ -9,6 +9,8 @@ import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
   const { signIn } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const handleLogin = (event) => {
     event.preventDefault();
@@ -23,7 +25,7 @@ const Login = () => {
         toast.success("Successfully Logged In");
 
         // navigate after login
-        Navigate(location?.state ? location.state : "/");
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         const errorCode = error.code;

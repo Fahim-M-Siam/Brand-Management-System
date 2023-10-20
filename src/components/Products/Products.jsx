@@ -15,7 +15,7 @@ const Products = () => {
 
   useEffect(() => {
     fetch(
-      `https://speedy-wrench-server-ag54id2ts-fahim-mohammad-siams-projects.vercel.app/products/${Name}`
+      `https://speedy-wrench-server-af2lh6y0x-fahim-mohammad-siams-projects.vercel.app/products/${Name}`
     )
       .then((res) => res.json())
       .then((res) => setProducts(res))
